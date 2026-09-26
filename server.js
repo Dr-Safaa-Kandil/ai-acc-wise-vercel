@@ -13,6 +13,10 @@ import { createClient } from '@supabase/supabase-js';
 
 const app = express();
 app.use(express.json());
+// مسار الصفحة الرئيسية لعرض واجهة منصة Wise الرقمية
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // تهيئة اتصال قاعدة بيانات Supabase
 const supabaseUrl = process.env.SUPABASE_URL;
