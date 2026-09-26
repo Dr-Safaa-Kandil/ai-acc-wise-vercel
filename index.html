@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page_title">منصة Wise الرقمية | الحلول المحاسبية والتدريبية الذكية (TaaS)</title>
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #2563eb;
+            --bg-light: #f8fafc;
+            --text-color: #334155;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --sidebar-bg: #f1f5f9;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* الهيدر العلوي */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--accent-color);
+        }
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-tabs a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        .nav-tabs a:hover, .nav-tabs a.active {
+            color: var(--accent-color);
+            background-color: #eff6ff;
+        }
+        .top-controls {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .lang-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* التخطيط الرئيسي */
+        .main-layout {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+        }
+        @media (max-width: 992px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* القسم الرئيسي */
+        .hero {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .hero-text h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .hero-text p {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            color: #64748b;
+        }
+        .hero-img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; }
+            .hero-img { width: 100%; height: 140px; }
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* الشريط الجانبي */
+        aside.news-sidebar {
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: fit-content;
+        }
+        aside.news-sidebar h3 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .news-item {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .news-thumb {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+        .news-content h4 {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            margin-bottom: 0.2rem;
+        }
+        .news-content p {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        /* فيديو AI Tip المصغر */
+        .tip-video-box {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%; border: none;
+        }
+
+        /* قسم المسابقات وطارئف الأعمال */
+        .contest-box {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        /* تذييل الصفحة مع التنقل المتكرر */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 2.5rem 1.5rem 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            text-align: center;
+        }
+        .footer-nav {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .footer-nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .footer-nav a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+        .copyright {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #334155;
+            width: 100%;
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر العلوي -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Wise <span>Platform</span></a>
+            <ul class="nav-tabs">
+                <li><a href="#" class="active" data-i18n="nav_home">الرئيسية</a></li>
+                <li><a href="https://ai-acc-wise-vercel-pj0qm19qo-dr-safaa.vercel.app/demo" target="_blank" data-i18n="nav_aiacc">نظام المحاسبة (AI-ACC)</a></li>
+                <li><a href="#news" data-i18n="nav_news">رادار التقنية</a></li>
+                <li><a href="#contest" data-i18n="nav_contest">مسابقات الأعمال</a></li>
+            </ul>
+            <div class="top-controls">
+                <button class="lang-btn" onclick="toggleLanguage()" id="langToggleBtn">EN / عربي</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- الهيكل الرئيسي للموقع -->
+    <main class="main-layout">
+        
+        <!-- المحتوى المركزي -->
+        <section>
+            <div class="hero">
+                <div class="hero-text">
+                    <h1 data-i18n="hero_title">منظومة ذكية تجمع المحاسبة المتقدمة والتدريب الرقمي</h1>
+                    <p data-i18n="hero_desc">منصة SaaS متكاملة لإدارة العمليات المالية لقطاع التجارة الإلكترونية، مع بنية معيارية للتدريب الرقمي (TaaS).</p>
+                    <a href="https://ai-acc-wise-vercel-pj0qm19qo-dr-safaa.vercel.app/demo" target="_blank" class="btn btn-primary" data-i18n="hero_btn">تجربة النظام المباشر</a>
+                </div>
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="Wise Analytics" class="hero-img">
+            </div>
+        </section>
+
+        <!-- الشريط الجانبي للأخبار والذكاء الاصطناعي -->
+        <aside class="news-sidebar" id="news">
+            <h3>
+                <span data-i18n="sidebar_title">رادار التقنية والذكاء الاصطناعي</span>
+                <span class="live-indicator"></span>
+            </h3>
+            
+            <div class="news-item">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=100&q=80" alt="IEEE" class="news-thumb">
+                <div class="news-content">
+                    <h4 data-i18n="news_1_title">أبحاث IEEE: كفاءة أمن المعاملات السحابية</h4>
+                    <p data-i18n="news_1_desc">دور النظم اللحظية في تقليص التباين المالي.</p>
+                </div>
+            </div>
+
+            <div class="news-item">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=100&q=80" alt="AI" class="news-thumb">
+                <div class="news-content">
+                    <h4 data-i18n="news_2_title">وكلاء الذكاء الاصطناعي في قطاع SaaS</h4>
+                    <p data-i18n="news_2_desc">تحليل مؤشرات السيولة بشكل تلقائي ودقيق.</p>
+                </div>
+            </div>
+
+            <!-- فيديو AI Tip المصغر -->
+            <div class="tip-video-box">
+                <h4 style="font-size: 0.9rem; color: var(--accent-color); margin-bottom: 0.4rem;" data-i18n="tip_title">💡 إضاءة تقنية (AI Tip - 1 Min)</h4>
+                <div class="video-container">
+                    <iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=1&modestbranding=1" title="AI Micro Tip" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- قسم مسابقات Wise (هل تعرف الخبر وراء القصة؟) -->
+            <div class="contest-box" id="contest">
+                <h4 style="font-size: 0.95ln; color: var(--primary-color); margin-bottom: 0.5rem;" data-i18n="contest_title">🎯 مسابقة اليوم: هل تعرف الخبر وراء القصة؟</h4>
+                <p style="font-size: 0.8rem; color: #475569; margin-bottom: 0.75rem;" data-i18n="contest_desc">
+                    كيف حولت شركة ناشئة توقف بوابة الدفع إلى فرصة ولاء رقمية عبر وكيل ذكاء اصطناعي؟ شاركنا برأيك التقني!
+                </p>
+                <input type="text" placeholder="اكتب تحليلك هنا..." style="width: 100%; padding: 0.4rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.75rem; margin-bottom: 0.5rem;">
+                <button style="background: var(--accent-color); color: #fff; border: none; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer; width: 100%;" data-i18n="contest_btn">إرسال الإجابة</button>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- شريط التنقل والسفلي والتذييل -->
+    <footer>
+        <div class="footer-container">
+            <ul class="footer-nav">
+                <li><a href="#" data-i18n="nav_home">الرئيسية</a></li>
+                <li><a href="https://ai-acc-wise-vercel-pj0qm19qo-dr-safaa.vercel.app/demo" target="_blank" data-i18n="nav_aiacc">نظام المحاسبة (AI-ACC)</a></li>
+                <li><a href="#news" data-i18n="nav_news">رادار التقنية</a></li>
+                <li><a href="#contest" data-i18n="nav_contest">مسابقات الأعمال</a></li>
+            </ul>
+            <p class="copyright" data-i18n="footer_copy">جميع الحقوق محفوظة لموقع ومنصة Wise الرقمية © 2026</p>
+        </div>
+    </footer>
+
+    <!-- سكربت الترجمة ودعم اللغتين -->
+    <script>
+        const translations = {
+            ar: {
+                page_title: "منصة Wise الرقمية | الحلول المحاسبية والتدريبية الذكية (TaaS)",
+                nav_home: "الرئيسية",
+                nav_aiacc: "نظام المحاسبة (AI-ACC)",
+                nav_news: "رادار التقنية",
+                nav_contest: "مسابقات الأعمال",
+                hero_title: "منظومة ذكية تجمع المحاسبة المتقدمة والتدريب الرقمي",
+                hero_desc: "منصة SaaS متكاملة لإدارة العمليات المالية لقطاع التجارة الإلكترونية، مع بنية معيارية للتدريب الرقمي (TaaS).",
+                hero_btn: "تجربة النظام المباشر",
+                sidebar_title: "رادار التقنية والذكاء الاصطناعي",
+                news_1_title: "أبحاث IEEE: كفاءة أمن المعاملات السحابية",
+                news_1_desc: "دور النظم اللحظية في تقليص التباين المالي.",
+                news_2_title: "وكلاء الذكاء الاصطناعي في قطاع SaaS",
+                news_2_desc: "تحليل مؤشرات السيولة بشكل تلقائي ودقيق.",
+                tip_title: "💡 إضاءة تقنية (AI Tip - 1 Min)",
+                contest_title: "🎯 مسابقة اليوم: هل تعرف الخبر وراء القصة؟",
+                contest_desc: "كيف حولت شركة ناشئة توقف بوابة الدفع إلى فرصة ولاء رقمية عبر وكيل ذكاء اصطناعي؟ شاركنا برأيك التقني!",
+                contest_btn: "إرسال الإجابة",
+                footer_copy: "جميع الحقوق محفوظة لموقع ومنصة Wise الرقمية © 2026"
+            },
+            en: {
+                page_title: "Wise Digital Platform | Intelligent Accounting & Training Solutions (TaaS)",
+                nav_home: "Home",
+                nav_aiacc: "Accounting System (AI-ACC)",
+                nav_news: "Tech Radar",
+                nav_contest: "Business Contests",
+                hero_title: "An Intelligent Ecosystem Unifying Advanced Accounting & Digital Training",
+                hero_desc: "An integrated SaaS platform for e-commerce financial operations, featuring modular digital training architecture (TaaS).",
+                hero_btn: "Test Live System",
+                sidebar_title: "Tech & AI News Radar",
+                news_1_title: "IEEE Research: Cloud Transaction Security",
+                news_1_desc: "The role of real-time systems in reducing financial variance.",
+                news_2_title: "AI Agents in the SaaS Sector",
+                news_2_desc: "Automated analysis of liquidity indicators.",
+                tip_title: "💡 Tech Tip (AI Tip - 1 Min)",
+                contest_title: "🎯 Daily Contest: Do You Know the News Behind the Story?",
+                contest_desc: "How did a startup turn a payment gateway outage into a loyalty opportunity using an AI agent? Share your insight!",
+                contest_btn: "Submit Answer",
+                footer_copy: "All rights reserved for Wise Digital Platform © 2026"
+            }
+        };
+
+        let currentLang = 'ar';
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const root = document.getElementById('html-root');
+            root.setAttribute('lang', currentLang);
+            root.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.textContent = translations[currentLang][key];
+                }
+            });
+            
+            document.getElementById('langToggleBtn').textContent = currentLang === 'ar' ? 'EN / عربي' : 'عربي / EN';
+        }
+    </script>
+</body>
+</html>
